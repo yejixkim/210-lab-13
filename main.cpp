@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
+#include <cmath>
 
 using namespace std;
 
@@ -57,7 +58,7 @@ int main () {
     }
 
     //write sorted records to ouput file
-    ofstream outputFile("210-lab-13-grades.txt");
+    ofstream outputFile("210-lab-13-grades-sorted.txt");
 
     if (!outputFile) {
         cout << "Error: could not open output file." << endl;
@@ -70,7 +71,7 @@ int main () {
 
     outputFile.close();
 
-    cout << "Sorted results written to 210-lab-13-grades.txt" << endl;
+    cout << "Sorted results written to 210-lab-13-grades-sorted.txt" << endl;
     
     //display summary stats
 
@@ -101,8 +102,12 @@ int main () {
     //make a copy of the array to sort by score so the first array stays sorted by ID
     Student scoreSorted[MAX_STUDENTS];
 
-    //selection sort by score
     for (int i = 0; i < numberOfStudents; i++) {
+        scoreSorted[i] = students[i];
+    }
+
+    //selection sort by score
+    for (int i = 0; i < numberOfStudents - 1; i++) {
         int minIndex = i;
 
         for (int j = i + 1; j < numberOfStudents; j++) {
@@ -130,7 +135,17 @@ int main () {
         int middle2 = numberOfStudents / 2;
         
         median = (scoreSorted[middle1].score + scoreSorted[middle2].score) / 2;
+        
+        if (scoreSorted[middle1].score == median) {
+        medianID = scoreSorted[middle1].studentID;
+    }
+    else if (scoreSorted[middle2].score == median) {
+        medianID = scoreSorted[middle2].studentID;
+    }
+    else {
         medianID = -1;
+    }
+}
     }
 
     // find std dev
@@ -164,8 +179,6 @@ int main () {
     if (medianID != -1) {
         cout << "(Student ID: " << medianID << ")";
     }
-
-    cout << endl;
 
     cout << setprecision(6);
 
