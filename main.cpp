@@ -92,12 +92,33 @@ int main () {
     double total = 0;
 
     for (int i = 0; i < numberOfStudents; i++) {
-        total += students[i].score
+        total += students[i].score;
     }
 
     double mean = total / numberOfStudents;
 
-    
+    //find median
+    //make a copy of the array to sort by score so the first array stays sorted by ID
+    Student scoreSorted[MAX_STUDENTS];
+
+    //selection sort by score
+    for (int i = 0; i < numberOfStudents; i++) {
+        int minIndex = i;
+
+        for (int j = i + 1; j < numberOfStudents; j++) {
+            if (scoreSorted[j].score < scoreSorted[minIndex].score) {
+                minIndex = j;
+            }
+        }
+         
+        Student temp = scoreSorted[i];
+        scoreSorted[i] = scoreSorted[minIndex];
+        scoreSorted[minIndex] = temp;
+    }
+
+   
+
+
 
     return 0;
 }
