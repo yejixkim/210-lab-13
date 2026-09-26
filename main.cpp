@@ -116,7 +116,22 @@ int main () {
         scoreSorted[minIndex] = temp;
     }
 
-   
+    double median;
+    int medianID;
+
+    if (numberOfStudents % 2 ==1) {
+        int middle = numberOfStudents / 2;
+
+        median = scoreSorted[middle].score;
+        medianID = scoreSorted[middle].studentID;
+    }
+    else {
+        int middle1 = numberOfStudents / 2 - 1;
+        int middle2 = numberOfStudents / 2;
+        
+        median = (scoreSorted[middle1].score + scoreSorted[middle2].score) / 2;
+        medianID = -1;
+    }
 
 
 
