@@ -63,8 +63,41 @@ int main () {
         cout << "Error: could not open output file." << endl;
         return 1;
     }
+
+    for (int i = 0; i < numberOfStudents; i++) {
+        outputFile << students[i].studentID << " " << students[i].score << endl;
+    }
+
+    outputFile.close();
+
+    cout << "Sorted results written to 210-lab-13-grades.txt" << endl;
     
     //display summary stats
+
+    //find min and max scores
+    int minIndex = 0;
+    int maxIndex = 0;
+
+    for (int i = 1; i < numberOfStudents; i++) {
+        if (students[i].score < students[minIndex].score) {
+            minIndex = i;
+        }
+
+        if (students[i].score > students[maxIndex].score) {
+            maxIndex = i;
+        }
+    }
+
+    //find mean
+    double total = 0;
+
+    for (int i = 0; i < numberOfStudents; i++) {
+        total += students[i].score
+    }
+
+    double mean = total / numberOfStudents;
+
+    
 
     return 0;
 }
