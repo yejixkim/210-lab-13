@@ -15,7 +15,7 @@ struct Student {
 
 const int MAX_STUDENTS = 1000;
 
-int main () {
+int main() {
     Student students[MAX_STUDENTS];
     int numberOfStudents = 0;
 
@@ -28,11 +28,11 @@ int main () {
     }
 
     // read all student records from input file
-    while (numberOfStudents < MAX_STUDENTS && 
-        inputFile >> students[numberOfStudents].studentID 
-        >> students[numberOfStudents].score) {
-            numberOfStudents++;
-        }
+    while (numberOfStudents < MAX_STUDENTS &&
+        inputFile >> students[numberOfStudents].studentID >>
+        students[numberOfStudents].score) {
+        numberOfStudents++;
+    }
 
     inputFile.close();
 
@@ -72,7 +72,7 @@ int main () {
     outputFile.close();
 
     cout << "Sorted results written to 210-lab-13-grades-sorted.txt" << endl;
-    
+
     //display summary stats
 
     //find min and max scores
@@ -115,7 +115,7 @@ int main () {
                 minIndex = j;
             }
         }
-         
+
         Student temp = scoreSorted[i];
         scoreSorted[i] = scoreSorted[minIndex];
         scoreSorted[minIndex] = temp;
@@ -124,28 +124,17 @@ int main () {
     double median;
     int medianID;
 
-    if (numberOfStudents % 2 ==1) {
+    if (numberOfStudents % 2 == 1) {
         int middle = numberOfStudents / 2;
 
         median = scoreSorted[middle].score;
         medianID = scoreSorted[middle].studentID;
-    }
-    else {
+    } else {
         int middle1 = numberOfStudents / 2 - 1;
         int middle2 = numberOfStudents / 2;
-        
+
         median = (scoreSorted[middle1].score + scoreSorted[middle2].score) / 2;
-        
-        if (scoreSorted[middle1].score == median) {
-        medianID = scoreSorted[middle1].studentID;
-    }
-    else if (scoreSorted[middle2].score == median) {
-        medianID = scoreSorted[middle2].studentID;
-    }
-    else {
         medianID = -1;
-    }
-}
     }
 
     // find std dev
@@ -164,25 +153,27 @@ int main () {
 
     cout << setprecision(5);
 
-    cout << "Minimum score: " << students[minIndex].score << " (Student ID: " 
-        << students[minIndex].studentID << ")" << endl;
-    
-    cout << "Maximum score: " << students[maxIndex].score << " (Student ID: " 
-        << students[maxIndex].studentID << ")" << endl;
+    cout << "Minimum score: " << students[minIndex].score << " (Student ID: " <<
+        students[minIndex].studentID << ")" << endl;
+
+    cout << "Maximum score: " << students[maxIndex].score << " (Student ID: " <<
+        students[maxIndex].studentID << ")" << endl;
 
     cout << setprecision(6);
 
     cout << "Mean score: " << mean << endl;
 
-    cout << "Median score: " << median << endl;
+    cout << "Median score: " << median;
 
     if (medianID != -1) {
         cout << "(Student ID: " << medianID << ")";
     }
 
+    cout << endl;
+
     cout << setprecision(6);
 
     cout << "Standard deviation: " << standardDeviation << endl;
- 
+
     return 0;
 }
