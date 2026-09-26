@@ -133,7 +133,43 @@ int main () {
         medianID = -1;
     }
 
+    // find std dev
+    double sumSquareDifferences = 0;
 
+    for (int i = 0; i < numberOfStudents; i++) {
+        double difference = students[i].score - mean;
+        sumSquareDifferences += difference * difference;
+    }
 
+    double standardDeviation = sqrt(sumSquareDifferences / numberOfStudents);
+
+    //display
+    cout << endl;
+    cout << "--- Summary Statistics ---" << endl;
+
+    cout << setprecision(5);
+
+    cout << "Minimum score: " << students[minIndex].score << " (Student ID: " 
+        << students[minIndex].studentID << ")" << endl;
+    
+    cout << "Maximum score: " << students[maxIndex].score << " (Student ID: " 
+        << students[maxIndex].studentID << ")" << endl;
+
+    cout << setprecision(6);
+
+    cout << "Mean score: " << mean << endl;
+
+    cout << "Median score: " << median << endl;
+
+    if (medianID != -1) {
+        cout << "(Student ID: " << medianID << ")";
+    }
+
+    cout << endl;
+
+    cout << setprecision(6);
+
+    cout << "Standard deviation: " << standardDeviation << endl;
+ 
     return 0;
 }
